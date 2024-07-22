@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz1</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgb(252, 232, 196);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #quiz {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: xx-large;
+        }
+
+        .choices {
+            margin-bottom: 20px;
+        }
+
+        .choice {
+            display: block;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .choice:hover {
+            background-color: #dee2e6;
+        }
+
+        .choice.correct {
+            background-color: rgb(80, 240, 80);
+        }
+
+        .choice.incorrect {
+            background-color: #eb7a84;
+        }
+
+        .choice span {
+            font-weight: bold;
+            border: 1px solid rgb(190, 63, 63);
+            background-color: rgb(180, 82, 25);
+            color: white;
+            height: 40px;
+            width: 40px;
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div id="quiz">
+        <div class="question">In web design, what does CSS stand for?</div>
+        <div class="choices">
+            <label class="choice"><span>A</span> Counter Strike Source</label>
+            <label class="choice"><span>B</span> Corrective Style Sheet</label>
+            <label class="choice"><span>C</span> Computer Style Sheet</label>
+            <label class="choice" data-answer="true"><span>D</span> Cascading Style Sheet</label>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const choices = document.querySelectorAll('.choice');
+
+        // Add click event listeners to each choice
+        choices.forEach(choice => {
+            choice.addEventListener('click', function() {
+                // Remove previous correct or incorrect classes
+                choices.forEach(c => {
+                    c.classList.remove('correct', 'incorrect');
+                });
+
+                // Check if the clicked choice is correct
+                const isCorrect = choice.getAttribute('data-answer') === 'true';
+
+                // Add appropriate class based on correctness
+                if (isCorrect) {
+                    choice.classList.add('correct');
+                } else {
+                    choice.classList.add('incorrect');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
